@@ -88,8 +88,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+//        $post->delete();
+        Post::destroy($id);
+        return redirect("/posts");
     }
 }

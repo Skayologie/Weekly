@@ -29,9 +29,10 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        $data =$request->all() ;
-        Comment::create($data);
-        return redirect("/posts");
+        $data = $request->all() ;
+        Comment::create($data) ;
+
+        return redirect("/post/".$data["slug"]) ;
     }
 
     /**

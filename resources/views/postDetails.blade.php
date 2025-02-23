@@ -88,6 +88,8 @@
                                 <form action="/comment/create" method="POST">
                                     @csrf
                                     <input  type="hidden" name="post_id" value="{{ $postDetails->id }}">
+                                    <input  type="hidden" name="slug" value="{{ $postDetails->slug }}">
+                                    <input  type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
                                     <div class="mb-4">
                         <textarea
@@ -123,10 +125,7 @@
 
                                                 @if(Auth::id() === $comment->user_id)
                                                     <div class="flex space-x-2">
-                                                        <button class="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition">
-                                                            Edit
-                                                        </button>
-                                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                                                        <form action="" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="text-sm text-black hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition">
@@ -139,20 +138,7 @@
                                             <div class="text-sm text-gray-700 dark:text-gray-300">
                                                 {{ $comment->comment_content }}
                                             </div>
-                                            <div class="mt-2 flex items-center space-x-4">
-                                                <button class="text-xs text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 flex items-center transition">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                                                    </svg>
-                                                    Like ({{ $comment->likes_count ?? 0 }})
-                                                </button>
-                                                <button class="text-xs text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 flex items-center transition">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                                    </svg>
-                                                    Reply
-                                                </button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 @empty

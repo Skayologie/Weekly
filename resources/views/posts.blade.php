@@ -74,9 +74,13 @@
                                                 <a style="background-color: darkgreen ;margin-right:5px;" href="posts/{{$post->id}}/restore" class="px-3 py-1 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded transition">
                                                     Restore
                                                 </a>
-                                                <a href="posts/{{$post->id}}/restore" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition">
-                                                    Delete
-                                                </a>
+                                                <form action="/posts/{{$post->id}}/delete" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button href="#" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             @else
                                                 <a href="posts/{{$post->id}}/archive" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition">
                                                     Archive
