@@ -6,7 +6,7 @@
                 <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-5 md:p-6">
                     <h1 class="text-2xl md:text-3xl font-bold text-black mb-2">{{$postDetails->post_title}}</h1>
                     <div class="flex items-center text-gray-200 text-sm">
-                        <span class="mr-2">By {{$postDetails->user_id}}</span>
+                        <span class="mr-2">By {{$postDetails->comments ?? "eex"}}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -80,7 +80,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6">
-                            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-6">Comments ({{ count($comments) }})</h2>
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-6">Comments ({{ count($postDetails->comments) }})</h2>
 
                             <!-- Comment Form -->
                             <div class="mb-8 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
@@ -93,7 +93,7 @@
 
                                     <div class="mb-4">
                         <textarea
-                            name="comment_content"
+                            name="comment"
                             rows="4"
                             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                             placeholder="Share your thoughts..."
@@ -111,15 +111,15 @@
 
                             <!-- Comments List -->
                             <div class="space-y-6">
-                                @forelse ($comments as $comment)
+                                @forelse ($postDetails->comments as $comment)
                                     <div class="flex space-x-4 pb-6 border-b border-gray-200 dark:border-gray-700">
                                         <div class="flex-shrink-0">
-                                            <img class="h-10 w-10 rounded-full" src="" alt="{{ $comment->name }}">
+                                            <img class="h-10 w-10 rounded-full" src="" >
                                         </div>
                                         <div class="flex-1">
                                             <div class="flex items-center justify-between mb-2">
                                                 <div>
-                                                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $comment->name }}</h4>
+                                                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $comment->users }}</h4>
                                                     <span class="text-xs text-gray-500 dark:text-gray-400"></span>
                                                 </div>
 
@@ -136,7 +136,7 @@
                                                 @endif
                                             </div>
                                             <div class="text-sm text-gray-700 dark:text-gray-300">
-                                                {{ $comment->comment_content }}
+                                                {{ $comment->comment }}
                                             </div>
 
                                         </div>

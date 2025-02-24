@@ -19,15 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-//            $table->id();
-//        $table->text("comment_content");
-//        $table->unsignedBigInteger("user_id");
-//        $table->foreign("user_id")->references("id")->on("users");
-//        $table->unsignedBigInteger("post_id");
-//        $table->foreign("post_id")->references("id")->on("posts");
-//        $table->timestamps();
-            "comment_content"=>fake()->text(50),
+            "comment"=>fake()->text(50),
             "user_id"=>User::factory(),
             "post_id"=>Post::factory(),
         ];

@@ -42,7 +42,7 @@
                                     {{ \Carbon\Carbon::parse($post->created_at)->format('M d, Y') }}
                                 </span>
                                     <span class="px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-semibold rounded">
-                                    {{ $post->category ?? 'Design' }}
+                                    {{ $post->category->category_name }}
                                 </span>
                                 </div>
 

@@ -10,8 +10,19 @@ class Comment extends Model
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory;
     protected $fillable = [
-        "comment_content",
+        "comment",
         "user_id",
         "post_id"
     ];
+
+    public function posts()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

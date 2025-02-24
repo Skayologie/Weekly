@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string("post_title",50);
+            $table->string("title",50);
             $table->text("post_content");
             $table->string('slug',100)->unique();
             $table->string("post_image")->nullable();
+            $table->enum("status",["actif","brouillon","archived"]);
+            $table->unsignedBigInteger("category_id");
+            $table->unsignedBigInteger("creator_id");
             $table->foreign("category_id")->references('id')->on('category');
             $table->foreign("creator_id")->references("id")->on("users");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

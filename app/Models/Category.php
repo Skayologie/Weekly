@@ -12,4 +12,12 @@ class Category extends Model
 
     protected $table = "category";
     protected $fillable = ["category_name"];
+
+
+    public function posts()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+
 }
